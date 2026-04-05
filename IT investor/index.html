@@ -1,0 +1,685 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Mirzomurodov A | IT-разработка, дизайн, кибербезопасность</title>
+    <!-- Google Fonts: строгие современные -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111216;
+            color: #E8EDF2;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Цветовая палитра: тёмно-серый, графит, мягкий синий, приглушённый фиолетовый */
+        :root {
+            --bg-deep: #0C0E12;
+            --bg-surface: #14161C;
+            --bg-elevated: #1B1E26;
+            --soft-blue: #5F7F9E;
+            --muted-purple: #7A6A9E;
+            --text-primary: #F0F4F9;
+            --text-secondary: #B0B8C5;
+            --border-subtle: #2A2E38;
+            --accent-glow: rgba(95, 127, 158, 0.2);
+            --card-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(12, 14, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', monospace;
+            font-size: 1.9rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            background: linear-gradient(130deg, #E0E7FF, var(--soft-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--soft-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.6rem;
+            color: var(--soft-blue);
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 720px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(to right, #FFFFFF, var(--soft-blue), #C5B9E2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.2rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--soft-blue);
+            padding-left: 20px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--soft-blue);
+            color: var(--soft-blue);
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-outline:hover {
+            background: var(--soft-blue);
+            color: #0C0E12;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(95, 127, 158, 0.3);
+        }
+
+        /* Секции */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 56px;
+            height: 3px;
+            background: var(--soft-blue);
+            border-radius: 4px;
+        }
+
+        /* Обо мне */
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1.2;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        .about-highlight {
+            background: var(--bg-elevated);
+            padding: 28px;
+            border-radius: 28px;
+            flex: 0.9;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .stat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--soft-blue);
+        }
+
+        /* Услуги карточки */
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-surface);
+            border-radius: 32px;
+            padding: 36px 28px;
+            flex: 1 1 280px;
+            transition: 0.25s ease;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--soft-blue);
+            background: #181C24;
+            box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--muted-purple);
+            margin-bottom: 24px;
+        }
+
+        .service-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .service-desc {
+            list-style: none;
+            margin-top: 16px;
+        }
+
+        .service-desc li {
+            margin: 12px 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-desc li i {
+            color: var(--soft-blue);
+            width: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Отзывы */
+        .testimonials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background: var(--bg-elevated);
+            border-radius: 28px;
+            padding: 28px;
+            width: 320px;
+            transition: 0.2s;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--muted-purple);
+            transform: scale(1.01);
+        }
+
+        .testimonial-text {
+            font-style: normal;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--soft-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Контакты */
+        .contact-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            background: var(--bg-surface);
+            border-radius: 40px;
+            padding: 48px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info i {
+            color: var(--soft-blue);
+            width: 32px;
+            margin-right: 12px;
+        }
+
+        .phone-big {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+
+        .contact-form {
+            flex: 1.2;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            padding: 14px 20px;
+            border-radius: 32px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            transition: 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--soft-blue);
+            box-shadow: 0 0 0 2px var(--accent-glow);
+        }
+
+        .btn-submit {
+            background: var(--soft-blue);
+            border: none;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #0C0E12;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit:hover {
+            background: #8BA9C9;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: var(--bg-deep);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        /* Анимации */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1), transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                padding: 0 24px;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                gap: 1.2rem;
+                padding: 1.5rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .contact-flex {
+                padding: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">Mirzomurodov A</div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#testimonials">Отзывы</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content fade-up">
+                    <h1 class="hero-title">Профессиональный IT-разработчик и дизайнер</h1>
+                    <div class="hero-sub">Веб-дизайн · Backend-архитектура · Кибербезопасность — создаю быстрые, надёжные и эстетичные цифровые продукты.</div>
+                    <button class="btn-outline" id="contactBtn">Связаться <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Обо мне -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title fade-up">Обо мне</h2>
+                <div class="about-grid">
+                    <div class="about-text fade-up">
+                        <p>Я — <strong>Mirzomurodov A</strong>, высококвалифицированный дизайнер и программист с 8+ годами опыта. Моя философия — создавать продукты, которые объединяют безупречный дизайн, мощный бэкенд и железобетонную безопасность.</p>
+                        <p style="margin-top: 1rem;">Разрабатываю современные веб-решения, которые не только выглядят минималистично и дорого, но и работают с максимальной производительностью. Каждый проект — это баланс между эстетикой, скоростью и защитой данных.</p>
+                        <p style="margin-top: 1rem;">Ставлю качество и профессионализм во главу угла. Работаю с полным циклом: от прототипа до развертывания и аудита безопасности.</p>
+                    </div>
+                    <div class="about-highlight fade-up">
+                        <div class="stat-list">
+                            <div class="stat-item"><i class="fas fa-code stat-icon"></i> <span>Чистый код & архитектура</span></div>
+                            <div class="stat-item"><i class="fas fa-palette stat-icon"></i> <span>Уникальный UI/UX дизайн</span></div>
+                            <div class="stat-item"><i class="fas fa-shield-alt stat-icon"></i> <span>Безопасность на всех уровнях</span></div>
+                            <div class="stat-item"><i class="fas fa-tachometer-alt stat-icon"></i> <span>Высокая производительность</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Услуги подробно -->
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title fade-up">Услуги</h2>
+                <div class="services-grid">
+                    <div class="service-card fade-up">
+                        <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
+                        <h3>Веб-дизайн</h3>
+                        <ul class="service-desc">
+                            <li><i class="fas fa-check-circle"></i> UI/UX дизайн, прототипирование</li>
+                            <li><i class="fas fa-check-circle"></i> Адаптивные интерфейсы (мобильные, планшеты, десктоп)</li>
+                            <li><i class="fas fa-check-circle"></i> Современный минималистичный стиль</li>
+                            <li><i class="fas fa-check-circle"></i> Дизайн-системы и micro-interactions</li>
+                        </ul>
+                    </div>
+                    <div class="service-card fade-up">
+                        <div class="service-icon"><i class="fas fa-server"></i></div>
+                        <h3>Backend-разработка</h3>
+                        <ul class="service-desc">
+                            <li><i class="fas fa-check-circle"></i> Серверная логика (Node.js, Python, Go)</li>
+                            <li><i class="fas fa-check-circle"></i> Проектирование и оптимизация баз данных</li>
+                            <li><i class="fas fa-check-circle"></i> Разработка REST / GraphQL API</li>
+                            <li><i class="fas fa-check-circle"></i> Масштабируемость и нагрузочное тестирование</li>
+                        </ul>
+                    </div>
+                    <div class="service-card fade-up">
+                        <div class="service-icon"><i class="fas fa-shield-virus"></i></div>
+                        <h3>Кибербезопасность</h3>
+                        <ul class="service-desc">
+                            <li><i class="fas fa-check-circle"></i> Аудит и защита веб-приложений</li>
+                            <li><i class="fas fa-check-circle"></i> Поиск уязвимостей (пентест)</li>
+                            <li><i class="fas fa-check-circle"></i> Безопасность данных и шифрование</li>
+                            <li><i class="fas fa-check-circle"></i> Настройка WAF, SSL, мониторинг угроз</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы (16 штук, включая Mirzomurodov A) -->
+        <section id="testimonials">
+            <div class="container">
+                <h2 class="section-title fade-up">Отзывы</h2>
+                <div class="testimonials-grid" id="testimonialsContainer"></div>
+            </div>
+        </section>
+
+        <!-- Контакты + форма -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title fade-up">Контакты</h2>
+                <div class="contact-flex">
+                    <div class="contact-info fade-up">
+                        <h3 style="margin-bottom: 20px;"><i class="fas fa-phone-alt"></i> Свяжитесь со мной</h3>
+                        <p><i class="fas fa-mobile-alt"></i> <span class="phone-big">+992 80 000 18 01</span></p>
+                        <p><i class="fas fa-envelope"></i> mirzomurodov@devcore.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Удалённо / Dushanbe, TJ</p>
+                        <div style="margin-top: 35px;">
+                            <i class="fab fa-telegram" style="font-size: 1.5rem; margin-right: 18px; color: var(--soft-blue);"></i>
+                            <i class="fab fa-github" style="font-size: 1.5rem; margin-right: 18px; color: var(--soft-blue);"></i>
+                            <i class="fab fa-linkedin-in" style="font-size: 1.5rem; color: var(--soft-blue);"></i>
+                        </div>
+                    </div>
+                    <div class="contact-form fade-up">
+                        <form id="callbackForm">
+                            <div class="form-group" style="margin-bottom: 18px;">
+                                <input type="text" id="name" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 18px;">
+                                <input type="email" id="email" placeholder="Email или телефон" required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 24px;">
+                                <textarea rows="3" id="message" placeholder="Кратко опишите проект..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Отправить сообщение <i class="fas fa-paper-plane"></i></button>
+                            <div id="formFeedback" style="margin-top: 16px; font-size: 0.9rem;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Mirzomurodov A — Качество, код, защита.</p>
+            <div style="margin-top: 10px;">
+                <i class="fas fa-code"></i> <i class="fas fa-laptop"></i> <i class="fas fa-lock"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileBtn = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-links');
+        mobileBtn.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Smooth scroll для навигации и кнопки
+        document.querySelectorAll('.nav-links a, .btn-outline').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const hash = this.getAttribute('href');
+                if(hash && hash.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(hash);
+                    if(target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        if(navList.classList.contains('active')) navList.classList.remove('active');
+                    }
+                }
+            });
+        });
+        const contactScrollBtn = document.getElementById('contactBtn');
+        if(contactScrollBtn) {
+            contactScrollBtn.addEventListener('click', () => {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Массив отзывов (16 отзывов, включая Mirzomurodov A)
+        const reviews = [
+            { author: "Mirzomurodov A", text: "Отличный подход к разработке! Создал архитектуру backend для стартапа — всё работает молниеносно, документация идеальна." },
+            { author: "Ekaterina V.", text: "Дизайн сайта превзошёл ожидания. Минималистично, дорого и очень удобно. Конверсия выросла на 25%." },
+            { author: "Mirzomurodov A", text: "Провел аудит безопасности моего интернет-магазина, нашёл критические уязвимости. Теперь мы защищены." },
+            { author: "Dmitry S.", text: "Профессионал высокого уровня. Создал адаптивную CRM-систему с нуля. Работаем уже полгода без нареканий." },
+            { author: "Anna L.", text: "Очень понравился UI/UX дизайн личного кабинета. Клиенты в восторге, спасибо!" },
+            { author: "Mirzomurodov A", text: "Рекомендую как лучшего full-stack разработчика. Проект был сложный, но Mirzomurodov справился на 10/10." },
+            { author: "Igor T.", text: "Качественная интеграция API и настройка серверов. Всё чётко, без задержек." },
+            { author: "Olga P.", text: "Сайт для юридической фирмы получился строгим и элегантным, скорость загрузки отличная." },
+            { author: "Mirzomurodov A", text: "Кибербезопасность на высшем уровне: обнаружил бэкдоры, настроил защиту от атак. Огромное спасибо." },
+            { author: "Vladimir K.", text: "Разработал дизайн-систему и frontend на React. Код чистый, переиспользуемый. Супер!" },
+            { author: "Natalia R.", text: "Отличный специалист в области баз данных — оптимизировал запросы, ускорил работу в 2 раза." },
+            { author: "Mirzomurodov A", text: "Создал защищённую админ-панель с многофакторной аутентификацией. Безопасность теперь на высоте." },
+            { author: "Alexey D.", text: "Очень аккуратный и ответственный. Сделал лендинг в срок, с уникальной анимацией." },
+            { author: "Elena M.", text: "Профессиональная консультация по защите данных и GDPR. Внедрил шифрование." },
+            { author: "Mirzomurodov A", text: "Backend для highload проекта — справился блестяще, нагрузку держит отлично." },
+            { author: "Stanislav B.", text: "Красивый, современный веб-дизайн, и при этом вся логика на бэке продумана до мелочей. Обращусь ещё." }
+        ];
+
+        const container = document.getElementById('testimonialsContainer');
+        if(container) {
+            reviews.forEach(rev => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card fade-up';
+                card.innerHTML = `
+                    <div class="testimonial-text">“${rev.text}”</div>
+                    <div class="testimonial-author"><i class="fas fa-user-circle"></i> ${rev.author}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Форма обратной связи (frontend)
+        const form = document.getElementById('callbackForm');
+        const feedback = document.getElementById('formFeedback');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nameVal = document.getElementById('name').value.trim();
+            const emailVal = document.getElementById('email').value.trim();
+            if(!nameVal || !emailVal) {
+                feedback.innerHTML = '<span style="color: #C0A0A0;"><i class="fas fa-exclamation-circle"></i> Пожалуйста, заполните имя и контакт.</span>';
+                setTimeout(() => feedback.innerHTML = '', 2500);
+                return;
+            }
+            feedback.innerHTML = '<span style="color: #8FB0D0;"><i class="fas fa-check-circle"></i> Спасибо! Я свяжусь с вами в ближайшее время.</span>';
+            form.reset();
+            setTimeout(() => feedback.innerHTML = '', 3000);
+        });
+
+        // Intersection Observer для плавных анимаций
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        fadeElements.forEach(el => observer.observe(el));
+
+        window.addEventListener('load', () => {
+            fadeElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if(rect.top < window.innerHeight - 60) {
+                    el.classList.add('visible');
+                    observer.unobserve(el);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
